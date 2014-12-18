@@ -15,6 +15,7 @@
  */
 
 #include <AP_GPS.h>
+#include <string>
 strcpy(AP_GPS::gps_string,"");
 
 extern const AP_HAL::HAL& hal;
