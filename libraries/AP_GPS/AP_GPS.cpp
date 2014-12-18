@@ -21,6 +21,8 @@
 #include <AP_GPS.h>
 
 extern const AP_HAL::HAL& hal;
+bool AP_GPS::ptr_success=false;//declaration to allocate memory for the variable
+
 
 // table of user settable parameters
 const AP_Param::GroupInfo AP_GPS::var_info[] PROGMEM = {
@@ -222,6 +224,9 @@ AP_GPS::detect_instance(uint8_t instance)
                 AP_GPS_NMEA::_detect(dstate->nmea_detect_state, data)) {
 				hal.console->print_P(PSTR(" NMEA "));
 				new_gps = new AP_GPS_NMEA(*this, state[instance], port);
+				ptr_to_nmea=new_gps;//changed
+				ptr_success=true;//true cz the obj of AP_GPS_NMEA has been properly created and updated by its constructor
+			}
 			}
 		}
 #endif
