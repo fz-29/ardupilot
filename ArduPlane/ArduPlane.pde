@@ -248,7 +248,7 @@ AP_InertialSensor_MPU9250 ins;
 AP_AHRS_NavEKF ahrs(ins, barometer, gps);
 #else
 AP_AHRS_DCM ahrs(ins, barometer, gps);
-#endif
+#endif 
 
 static AP_L1_Control L1_controller(ahrs);
 static AP_TECS TECS_controller(ahrs, aparm);
