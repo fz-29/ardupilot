@@ -827,7 +827,7 @@ void setup() {
 
     // load the default values of variables listed in var_info[]
     AP_Param::setup_sketch_defaults();
-
+	hal.uartC->begin(9600);//Baud Rate to be changed //9600,14400
     AP_Notify::flags.failsafe_battery = false;
 
     notify.init(false);
