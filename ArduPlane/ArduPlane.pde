@@ -1116,8 +1116,13 @@ static void airspeed_ratio_update(void)
  */
 static void update_GPS_50Hz(void)
 {
+
     static uint32_t last_gps_reading[GPS_MAX_INSTANCES];
     gps.update();
+    if(gps.ptr_to_nmea->flag_string==true)
+    { 
+      hal.uartC->write(gps.ptr_to_nmea->gps_string);
+     }
 
     for (uint8_t i=0; i<gps.num_sensors(); i++) {
         if (gps.last_message_time_ms(i) != last_gps_reading[i]) {
