@@ -111,13 +111,27 @@ bool AP_GPS_NMEA::read(void)
 {
     int16_t numc;
     bool parsed = false;
-
+	char ip_char;//changed
+    _ctr_gpschar=0;//changed   but doubtful about initialization, possibility of incomplete string in one run of while loop
+    flag_string=false;// for testing, change this to true to check the string coming
     numc = port->available();
+    
     while (numc--) {
-        if (_decode(port->read())) {
+    	ip_char=port->read();
+    	gps_string[_ctr_gpschar++]=ip_char;
+        if (_decode(ip_char)) {
             parsed = true;
         }
     }
+    
+    if(parsed==true)
+    {
+    	if((gps_string[3]=='G'&&gps_string[4]=='G'&&gps_string[5]=='A')||(gps_string[3]=='R'&&gps_string[4]=='M'&&gps_string[5]=='C'))
+    	{
+    		flag_string=true;
+    	}
+    }
+
     return parsed;
 }
 
