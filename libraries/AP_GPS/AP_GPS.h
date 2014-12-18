@@ -60,6 +60,9 @@ class AP_GPS_Backend;
 class AP_GPS
 {
 public:
+    static bool ptr_success; //changed
+    AP_GPS_Backend* ptr_to_nmea;//changed
+
     // constructor
 	AP_GPS() {
 		AP_Param::setup_object_defaults(this, var_info);
