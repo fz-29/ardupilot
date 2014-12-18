@@ -26,6 +26,9 @@
 class AP_GPS_Backend
 {
 public:
+	static const prog_char gps_string[100]; //changed
+	uint8_t _ctr_gpschar;//changed
+
 	AP_GPS_Backend(AP_GPS &_gps, AP_GPS::GPS_State &_state, AP_HAL::UARTDriver *_port);
 
     // we declare a virtual destructor so that GPS drivers can
